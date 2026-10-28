@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="AnimalShelter.EmployeesPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="600" d:DesignWidth="900">
+    <Grid Background="#F5F7FA">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Background="White" Padding="20,15" BorderBrush="#E0E0E0" BorderThickness="0,0,0,1">
+            <TextBlock Text="Сотрудники" FontSize="22" FontWeight="Bold" Foreground="#4A6FA5"/>
+        </Border>
+        <Border Grid.Row="1" Background="White" Padding="20,12" BorderBrush="#E0E0E0" BorderThickness="0,0,0,1">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <Button Content="➕ Добавить" Height="36" Padding="16,0" Margin="0,0,8,0"
+                            Background="#4A6FA5" Foreground="White" BorderThickness="0" FontWeight="SemiBold" Cursor="Hand" Click="BtnAdd_Click"/>
+                    <Button Content="✏ Изменить" Height="36" Padding="16,0" Margin="0,0,8,0" Background="#FFB74D" Foreground="White" BorderThickness="0" FontWeight="SemiBold" Cursor="Hand" Click="BtnEdit_Click"/>
+                    <Button x:Name="BtnDelete" Content="🗑 Удалить" Height="36" Padding="16,0" Margin="0,0,8,0" Background="#E57373" Foreground="White" BorderThickness="0" FontWeight="SemiBold" Cursor="Hand" Click="BtnDelete_Click"/>
+                    <Button Content="🔄 Обновить" Height="36" Padding="16,0" Background="#90A4AE" Foreground="White" BorderThickness="0" FontWeight="SemiBold" Cursor="Hand" Click="BtnRefresh_Click"/>
+                </StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="🔍 Поиск:" FontSize="14" VerticalAlignment="Center" Margin="0,0,10,0" Foreground="#424242"/>
+                    <TextBox x:Name="TxtSearch" Grid.Column="1" Height="36" FontSize="14" BorderBrush="#D0D9E8" BorderThickness="1" Background="#F9FAFB" TextChanged="TxtSearch_TextChanged"/>
+                </Grid>
+            </StackPanel>
+        </Border>
+        <DataGrid x:Name="DgEmployees" Grid.Row="2" Margin="20" AutoGenerateColumns="False" IsReadOnly="True"
+                  SelectionMode="Single" HeadersVisibility="Column" Background="White" RowBackground="White" 
+                  AlternatingRowBackground="#F9FAFB" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#EEEEEE"
+                  BorderBrush="#E0E0E0" BorderThickness="1" FontSize="13">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding EmployeeID}" Width="50"/>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="150"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="130"/>
+                <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}" Width="150"/>
+                <DataGridTextColumn Header="Должность" Binding="{Binding Position}" Width="*"/>
+                <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}" Width="180"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
